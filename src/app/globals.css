@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-.jarak {
-  margin-right: 20vw;
-}
+/* globals.css */
+html {
+    --bg-color: white;
+    --text-color: black;
+  }
+  
+  html.dark {
+    --bg-color: #1a202c; /* Dark mode background color */
+    --text-color: #e2e8f0; /* Dark mode text color */
+  }
+  
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
