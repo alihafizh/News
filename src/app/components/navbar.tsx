@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useTheme } from '../context/ThemeContext'; 
 import { FaMoon, FaSun } from 'react-icons/fa'; 
 
-
 interface NewsItem {
     id: number;
     title: string;
@@ -22,7 +21,6 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
     const [currentDate, setCurrentDate] = useState(""); 
     const { isDarkMode, toggleTheme } = useTheme(); 
 
-    // Function to format the current date
     const formatDate = (date: Date) => {
         const options: Intl.DateTimeFormatOptions = {
             year: 'numeric',
@@ -41,7 +39,6 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
         setIsMenuOpen(!isMenuOpen); 
     };
 
-    // Filter the news based on the search query
     const filteredNews = news.filter((item) =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -49,8 +46,6 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
     return (
         <div className={`w-full px-2 sticky top-0 z-20 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'} h-20 md:h-28 xl:h-40`}>
             <section className="flex flex-row justify-between items-center h-full">
-                
-                
                 <Link href="/">
                     <img 
                         src="./picture/Logonews.jpeg" 
@@ -59,9 +54,7 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
                     />
                 </Link>
 
-                
                 <div className="flex items-center">
-                
                     {showSearch && (
                         <div className="relative flex items-center">
                             <input
@@ -72,7 +65,6 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
                                 className={`px-2 py-1 rounded-lg w-32 sm:w-40 md:w-48 lg:w-72 xl:w-96 ${isDarkMode ? 'bg-gray-800 text-white border-gray-600' : 'bg-white text-black border-gray-300'}`}
                             />
 
-                            
                             {searchQuery && (
                                 <div className={`absolute left-0 right-0 mt-1 shadow-lg rounded-lg z-10 max-h-40 overflow-auto w-full ${isDarkMode ? 'bg-gray-800 text-white border-gray-600' : 'bg-white text-black'}`}>
                                     {filteredNews.length > 0 ? (
@@ -92,17 +84,15 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
                     )}
                 </div>
 
-                {/* Desktop buttons */}
                 <div className="hidden sm:flex flex-row items-center">
                     <h1 className="mx-2 sm:mx-4 text-xs sm:text-sm md:text-base w-20 sm:w-28 py-1 h-10 sm:h-14 flex justify-center items-center">
                         {currentDate}
                     </h1>
 
-                    {/* Dark Mode Toggle Button */}
                     <button onClick={toggleTheme} className={`w-15 h-15 mr-4 justify-center items-center flex rounded ${isDarkMode ? 'text-white' : 'text-black'}`}>
                         {isDarkMode ? <FaSun className="size-12 p-2"/> : <FaMoon className="size-12 p-2" />}
                     </button>
-                    {/* Login button */}
+
                     <Link href="/Login" passHref>
                         <button 
                             className={`mx-2 sm:mx-4 border-2 text-xs sm:text-sm md:text-base w-20 sm:w-24 md:w-32 py-1 h-10 sm:h-14 flex justify-center items-center rounded-2xl hover:bg-slate-600 transition duration-300 cursor-pointer ${isDarkMode ? 'border-white text-white' : 'border-gray-500 hover:bg-gray-300 text-black'}`}>
@@ -110,7 +100,6 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
                         </button>
                     </Link>
 
-                    {/* Membership button */}
                     <Link href="/membership" passHref>
                         <button 
                             className={`mx-2 sm:mx-4 border-2 text-xs sm:text-sm md:text-base w-20 sm:w-24 md:w-32 h-10 py-1 sm:h-14 flex justify-center items-center rounded-2xl hover:bg-slate-600 transition duration-300 cursor-pointer ${isDarkMode ? 'border-white text-white' : 'border-gray-500 hover:bg-gray-300 text-black'}`}>
@@ -119,7 +108,6 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
                     </Link>
                 </div>
 
-                {/* Hamburger menu */}
                 <div className="sm:hidden flex items-center">
                     <button onClick={toggleMenu} className="focus:outline-none">
                         {isMenuOpen ? (
@@ -135,7 +123,6 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
                 </div>
             </section>
 
-            {/* Mobile menu */}
             {isMenuOpen && (
                 <div className={`absolute right-2 top-20 w-48 shadow-lg rounded-lg p-4 z-30 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
                     <div className="flex flex-col">
