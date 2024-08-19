@@ -16,20 +16,16 @@ export default function HotNews() {
                 {newsData.map((newsItem) => (
                     <a
                         key={newsItem.id}
-                        href={newsItem.link} // Link to the respective news article
-                        className="w-full h-56 border rounded-xl flex items-center p-4 hover:shadow-lg transition-shadow duration-200" // Add hover effect
+                        href={newsItem.link}
+                        className="w-full h-56 border rounded-xl flex items-center p-4 hover:shadow-lg transition-shadow duration-200"
                     >
-                        {/* Image on the left */}
                         <img
                             src={newsItem.imgSrc}
                             alt={newsItem.title}
-                            className="w-40 h-40 mr-4" // Image size 40x40
+                            className="w-40 h-40 mr-4"
                         />
-                        {/* Text content (headline and description) */}
                         <div className="w-full">
-                            {/* Headline */}
                             <p className="text-center font-bold">{newsItem.title}</p>
-                            {/* Short description */}
                             <p className="text-center text-sm mt-2">{newsItem.description}</p>
                         </div>
                     </a>
