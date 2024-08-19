@@ -4,7 +4,7 @@ import Navbar from "./components/navbar";
 import SecNavbar from "./components/secnavbar";
 import HotNews from "./pages/hotnews";
 import NewsCarousel from "./pages/news";
-import { ThemeProvider } from './context/ThemeContext'; // Tambahkan ini
+import { ThemeProvider } from './context/ThemeContext';
 
 const newsData = [
   { id: 1, title: "Breaking News: Big Event!" },
@@ -21,7 +21,7 @@ const newsData = [
 
 export default function Home() {
   return (
-    <ThemeProvider> {/* Bungkus semua dengan ThemeProvider */}
+    <ThemeProvider>
       <div className="w-full">
         <Navbar news={newsData} />
         <Carousel />

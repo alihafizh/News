@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useTheme } from '../context/ThemeContext'; // Import context
+import { useTheme } from '../context/ThemeContext'; 
 
 const newsData = [
   { id: 1, title: "Breaking News: Big Event!", link: "/page1" },
@@ -23,9 +23,9 @@ export default function NewsCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slidesPerPage = 3;
   const totalSlides = Math.ceil(newsData.length / slidesPerPage);
-  const { isDarkMode } = useTheme(); // Use context
+  const { isDarkMode } = useTheme(); 
 
-  // Automatically slide every 3 seconds
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % totalSlides);
