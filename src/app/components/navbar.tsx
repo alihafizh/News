@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation'; // Import useRouter from 'next/navigation'
 import Link from 'next/link';
 import { useTheme } from '../context/ThemeContext'; 
 import { FaMoon, FaSun } from 'react-icons/fa'; 
@@ -19,7 +20,23 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [currentDate, setCurrentDate] = useState(""); 
-    const { isDarkMode, toggleTheme } = useTheme(); 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { isDarkMode, toggleTheme } = useTheme();
+    const router = useRouter(); // Initialize useRouter
+
+    useEffect(() => {
+        const today = new Date();
+        setCurrentDate(formatDate(today)); 
+
+        const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        setIsLoggedIn(userLoggedIn);
+    }, []);
+
+    useEffect(() => {
+        // Check login status on component mount
+        const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        setIsLoggedIn(userLoggedIn);
+    }, []);
 
     const formatDate = (date: Date) => {
         const options: Intl.DateTimeFormatOptions = {
@@ -30,11 +47,6 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
         return date.toLocaleDateString('en-US', options);
     };
 
-    useEffect(() => {
-        const today = new Date();
-        setCurrentDate(formatDate(today)); 
-    }, []);
-
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen); 
     };
@@ -43,12 +55,24 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
         item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const handleLoginLogout = () => {
+        if (isLoggedIn) {
+            localStorage.removeItem('isLoggedIn');
+            setIsLoggedIn(false);
+        } else {
+            // Redirect to login page
+            localStorage.setItem('isLoggedIn', 'true');
+            setIsLoggedIn(true);
+            router.push('/Login'); // Use router to navigate to login page
+        }
+    };
+
     return (
-        <div className={`w-full px-2 sticky top-0 z-20 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'} h-20 md:h-28 xl:h-40`}>
+        <div className={`w-full px-2 sticky top-0 z-20 ${isDarkMode ? 'bg-blue-700 text-white' : 'bg-blue-500 text-black'} h-20 md:h-28 xl:h-40`}>
             <section className="flex flex-row justify-between items-center h-full">
                 <Link href="/">
                     <img 
-                        src="./picture/Logonews.jpeg" 
+                        src="/picture/Logonews.jpeg"
                         alt="logo" 
                         className="h-12 w-16 sm:h-16 sm:w-24 md:h-20 md:w-32 cursor-pointer" 
                     />
@@ -62,7 +86,7 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
                                 placeholder="Search news..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className={`px-2 py-1 rounded-lg w-32 sm:w-40 md:w-48 lg:w-72 xl:w-96 ${isDarkMode ? 'bg-gray-800 text-white border-gray-600' : 'bg-white text-black border-gray-300'}`}
+                                className={`px-2 py-1 border rounded-lg w-32 sm:w-40 md:w-48 lg:w-72 xl:w-96 ${isDarkMode ? 'bg-gray-800 text-white border-gray-600' : 'bg-white text-black border-gray-300'}`}
                             />
 
                             {searchQuery && (
@@ -89,16 +113,16 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
                         {currentDate}
                     </h1>
 
-                    <button onClick={toggleTheme} className={`w-15 h-15 mr-4 justify-center items-center flex rounded ${isDarkMode ? 'text-white' : 'text-black'}`}>
-                        {isDarkMode ? <FaSun className="size-12 p-2"/> : <FaMoon className="size-12 p-2" />}
+                    <button onClick={toggleTheme} className={`w-15 h-15 mr-4 flex justify-center items-center rounded ${isDarkMode ? 'text-white' : 'text-black'}`}>
+                        {isDarkMode ? <FaSun className="text-lg"/> : <FaMoon className="text-lg" />}
                     </button>
 
-                    <Link href="/Login" passHref>
-                        <button 
-                            className={`mx-2 sm:mx-4 border-2 text-xs sm:text-sm md:text-base w-20 sm:w-24 md:w-32 py-1 h-10 sm:h-14 flex justify-center items-center rounded-2xl hover:bg-slate-600 transition duration-300 cursor-pointer ${isDarkMode ? 'border-white text-white' : 'border-gray-500 hover:bg-gray-300 text-black'}`}>
-                            Login
-                        </button>
-                    </Link>
+                    <button 
+                        onClick={handleLoginLogout}
+                        className={`mx-2 sm:mx-4 border-2 text-xs sm:text-sm md:text-base w-20 sm:w-24 md:w-32 py-1 h-10 sm:h-14 flex justify-center items-center rounded-2xl hover:bg-slate-600 transition duration-300 cursor-pointer ${isDarkMode ? 'border-white text-white' : 'border-gray-500 hover:bg-gray-300 text-black'}`}
+                    >
+                        {isLoggedIn ? 'Logout' : 'Login'}
+                    </button>
 
                     <Link href="/membership" passHref>
                         <button 
@@ -129,15 +153,14 @@ export default function Navbar({ news, showSearch = true }: NavbarProps) {
                         <button onClick={toggleTheme} className={`flex items-center justify-center p-2 my-2 rounded-md ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-slate-200 text-black'}`}>
                             {isDarkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
                         </button>
-                        <Link href="/Login" passHref>
-                            <button 
-                                className={`text-xs w-full py-2 rounded-md mb-2 hover:bg-slate-400 transition duration-300 cursor-pointer ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-slate-200 text-black border border-gray-300'}`}>
-                                Login
-                            </button>
-                        </Link>
+                        <button 
+                            onClick={handleLoginLogout}
+                            className={`text-xs w-full py-2 rounded-md mb-2 hover:bg-slate-600 transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-slate-200 text-black'}`}>
+                            {isLoggedIn ? 'Logout' : 'Login'}
+                        </button>
                         <Link href="/membership" passHref>
                             <button 
-                                className={`text-xs w-full py-2 rounded-md hover:bg-slate-400 transition duration-300 cursor-pointer ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-slate-200 text-black border border-gray-300'}`}>
+                                className={`text-xs w-full py-2 rounded-md hover:bg-slate-600 transition duration-300 ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-slate-200 text-black'}`}>
                                 Membership
                             </button>
                         </Link>

@@ -1,14 +1,20 @@
-"use client";
+"use client"
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function Carousel() {
-    const [currentIndex, setCurrentIndex] = useState(0);
+type Slide = {
+    src: string;
+    link: string;
+};
 
-    const slides = [
-        { src: "./picture/car1.jpeg", link: "/page1" },
-        { src: "./picture/car2.jpeg", link: "/page2" },
-        { src: "./picture/car3.jpeg", link: "/page3" }
+export default function Carausel() {
+    const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+    const slides: Slide[] = [
+        { src: "/picture/car1.jpeg", link: "/page1" },
+        { src: "/picture/car2.jpeg", link: "/page2" },
+        { src: "/picture/car3.jpeg", link: "/page3" }
     ];
 
     useEffect(() => {
