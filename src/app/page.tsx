@@ -3,8 +3,7 @@ import Footer from "./components/footer";
 import Navbar from "./components/navbar";
 import SecNavbar from "./components/secnavbar";
 import HotNews from "./pages/hotnews";
-import NewsCarousel from "./pages/news";
-import { ThemeProvider } from './context/ThemeContext';
+import NewsCarousel from "./pages/newscarousek";
 
 const newsData = [
   { id: 1, title: "Breaking News: Big Event!" },
@@ -21,15 +20,16 @@ const newsData = [
 
 export default function Home() {
   return (
-    <ThemeProvider>
-      <div className="w-full">
-        <Navbar news={newsData} />
-        <Carousel />
-        <SecNavbar />
-        <NewsCarousel />
-        <HotNews />
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <div className="w-full">
+      <Navbar news={newsData} />
+      <Carousel />
+      <SecNavbar />
+
+      <NewsCarousel />
+      <HotNews />
+
+      <Footer />
+    </div>
   );
 }
+

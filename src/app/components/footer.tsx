@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-800 text-white py-10">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8v">
         {/* Social Media Section */}
         <div className="flex flex-col items-center md:items-start">
           <h1 className="text-lg font-bold mb-4">Follow Us</h1>
