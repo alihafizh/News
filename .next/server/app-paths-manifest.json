@@ -1,5 +1,5 @@
 {
+  "/databases/register/page": "app/databases/register/page.js",
   "/page": "app/page.js",
-  "/Login/page": "app/Login/page.js",
-  "/databases/register/page": "app/databases/register/page.js"
+  "/Login/page": "app/Login/page.js"
 }

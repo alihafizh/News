@@ -9,7 +9,7 @@ export default function Membership() {
         <div className="relative p-4">
             {/* Back Button */}
             <button
-                onClick={() => router.push('/')} // Navigate to home page
+                onClick={() => router.push('/')}
                 className="absolute top-4 left-4 bg-gray-200 dark:bg-gray-800 text-black dark:text-white rounded-lg px-4 py-2 shadow-md hover:bg-gray-300 dark:hover:bg-gray-700 transition"
             >
                 Back
@@ -32,7 +32,7 @@ export default function Membership() {
                             </ul>
                         </div>
                         <button 
-                            onClick={() => router.push('/payment/member')} // Navigate to the member page
+                            onClick={() => router.push('/payment/member')} 
                             className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition mt-auto"
                         >
                             Learn More
@@ -52,7 +52,7 @@ export default function Membership() {
                             </ul>
                         </div>
                         <button 
-                            onClick={() => router.push('/payment/newmember')} // Navigate to the member page
+                            onClick={() => router.push('/payment/newmember')} 
                             className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition mt-auto"
                         >
                             Join Now
@@ -72,7 +72,7 @@ export default function Membership() {
                             </ul>
                         </div>
                         <button 
-                            onClick={() => router.push('/payment/standard')} // Navigate to the member page
+                            onClick={() => router.push('/payment/standard')} 
                             className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition mt-auto"
                         >
                             Get Started
