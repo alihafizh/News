@@ -7,39 +7,41 @@ export default function Login() {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('user'); // Role selection
+    const [role, setRole] = useState('user');
     const [error, setError] = useState('');
-    const [showQuestions, setShowQuestions] = useState(true); // Show questions
+    const [showQuestions, setShowQuestions] = useState(true);
 
     const handleLogin = async () => {
         try {
-            const res = await fetch('http://localhost:8000/api/login', {
+            const res = await fetch('/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password, role }), // Include role in request
+                body: JSON.stringify({ email, password }),
             });
-
-            const contentType = res.headers.get('Content-Type');
-            const responseText = await res.text(); // Capture text from response
-            console.log('Response content type:', contentType);
-            console.log('Response text:', responseText);
-            
+    
             if (res.ok) {
-                const data = JSON.parse(responseText);
+                const data = await res.json();
+                console.log('Login success:', data); // Tambahkan log di sini
                 localStorage.setItem('token', data.token);
-                localStorage.setItem('role', data.role); // Save user role
-                router.push('/'); // Redirect to home or dashboard
+                localStorage.setItem('isAdmin', data.isAdmin.toString());
+    
+                if (data.isAdmin) {
+                    router.push('/admin');
+                } else {
+                    router.push('/');
+                }
             } else {
-                setError(responseText || 'An error occurred. Please try again.');
+                const errorData = await res.json();
+                setError(errorData.error || 'An error occurred. Please try again.');
             }
-            
         } catch (error) {
             console.error('Error during login:', error);
             setError('An error occurred. Please try again.');
         }
     };
+    
 
     return (
         <div className="relative flex flex-col justify-center items-center min-h-screen">
@@ -58,7 +60,6 @@ export default function Login() {
 
             <div className="flex flex-col justify-center items-center my-8 sm:my-10 border rounded-xl border-black dark:border-white">
                 <div className="w-[85vw] sm:w-[65vw] md:w-[50vw] lg:w-[35vw] xl:w-[25vw] h-[50vh] md:h-[55vh] flex flex-col items-center rounded-xl p-5 shadow-lg dark:shadow-2xl">
-                    
                     {showQuestions && (
                         <div className="my-5 w-full">
                             <label className="block text-sm md:text-lg mb-2">Are you an Admin?</label>
@@ -101,20 +102,21 @@ export default function Login() {
                             </div>
                             <button 
                                 className="border w-60 h-12 md:h-20 justify-center items-center flex rounded-xl text-lg md:text-2xl my-2 hover:bg-gray-200 dark:hover:bg-gray-400 dark:hover:text-black transition"
-                                onClick={handleLogin}>
+                                onClick={handleLogin}
+                            >
                                 Log in
                             </button>
                             <button 
                                 className="w-40 md:w-60 h-12 md:h-16 justify-center items-center flex my-5 text-sm md:text-lg hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-white transition"
-                                onClick={() => alert('Forgotten password clicked!')}>
+                                onClick={() => alert('Forgotten password clicked!')}
+                            >
                                 Forgotten password
                             </button>
-
                             <p className="text-sm md:text-lg text-black dark:text-white">or</p>
-
                             <button 
                                 className="border w-40 md:w-60 h-12 md:h-16 justify-center items-center flex rounded-lg my-5 text-lg md:text-2xl hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-white transition"
-                                onClick={() => router.push('/databases/register')}>
+                                onClick={() => router.push('/databases/register')}
+                            >
                                 Register 
                             </button>
                         </>

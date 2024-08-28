@@ -10,7 +10,7 @@ export default function Member()
         <div className="relative min-h-screen bg-gradient-to-r from-neutral-400 via-slate-500 to-slate-200 p-10">
               {/* Back Button */}
               <button
-                onClick={() => router.push('/membership')} // Navigate to home page
+                onClick={() => router.push('/membership')}
                 className="absolute top-4 left-4 bg-gray-200 dark:bg-gray-800 text-black dark:text-white rounded-lg px-4 py-2 shadow-md hover:bg-gray-300 dark:hover:bg-gray-700 transition"
             >
                 Back
