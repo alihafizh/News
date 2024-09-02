@@ -1,5 +1,9 @@
 {
-  "/databases/register/page": "app/databases/register/page.js",
   "/page": "app/page.js",
-  "/Login/page": "app/Login/page.js"
+  "/allnews/internasional/page": "app/allnews/internasional/page.js",
+  "/Login/page": "app/Login/page.js",
+  "/databases/register/page": "app/databases/register/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/adminpage/makenews/page": "app/admin/adminpage/makenews/page.js",
+  "/admin/adminpage/viewsnews/page": "app/admin/adminpage/viewsnews/page.js"
 }
