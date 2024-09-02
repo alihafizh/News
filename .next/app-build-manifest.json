@@ -11,10 +11,90 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/admin/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/page.js"
+    ],
+    "/admin/adminpage/makenews/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/adminpage/makenews/page.js"
+    ],
+    "/admin/adminpage/viewsnews/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/adminpage/viewsnews/page.js"
+    ],
+    "/admin/adminpage/portofolio/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/adminpage/portofolio/page.js"
+    ],
+    "/admin/adminpage/statistic/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/adminpage/statistic/page.js"
+    ],
     "/Login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/Login/page.js"
+    ],
+    "/admin/adminpage/commentANDlike/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/adminpage/commentANDlike/page.js"
+    ],
+    "/allnews/beritaterbaru/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/allnews/beritaterbaru/page.js"
+    ],
+    "/allnews/politik/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/allnews/politik/page.js"
+    ],
+    "/allnews/ekonomi/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/allnews/ekonomi/page.js"
+    ],
+    "/allnews/index/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/allnews/index/page.js"
+    ],
+    "/membership/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/membership/page.js"
+    ],
+    "/allnews/berita/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/allnews/berita/page.js"
+    ],
+    "/allnews/internasional/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/allnews/internasional/page.js"
+    ],
+    "/payment/member/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/payment/member/page.js"
+    ],
+    "/payment/newmember/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/payment/newmember/page.js"
+    ],
+    "/payment/standard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/payment/standard/page.js"
     ],
     "/databases/register/page": [
       "static/chunks/webpack.js",
